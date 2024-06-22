@@ -1,6 +1,6 @@
 {
   "name": "@oscar50048/react-test-button",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "test-button",
   "main": "lib/Button.js",
   "scripts": {

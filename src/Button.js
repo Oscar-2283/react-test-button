@@ -22,7 +22,7 @@ export function bootstrap() {
 export function mount(props) {
   return new Promise((resolve, reject) => {
     try {
-      const domElement = props.domElementGetter();
+      const domElement = props.domElementGetter ? props.domElementGetter() : null;
       if (domElement) {
         root = ReactDOM.createRoot(domElement);
         root.render(<TestButton />);
