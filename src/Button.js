@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import Button from '@mui/material/Button';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
@@ -13,14 +13,20 @@ const TestButton = () => {
 
 export default TestButton;
 
-export function mount(props) {
-  ReactDOM.render(<TestButton />, props.domElement);
-}
-
-export function unmount(props) {
-  ReactDOM.unmountComponentAtNode(props.domElement);
-}
+// 保存根節點以便後續卸載
+let root;
 
 export function bootstrap() {
   return Promise.resolve();
+}
+
+export function mount(props) {
+  // 創建根節點並渲染
+  root = ReactDOM.createRoot(props.domElement);
+  root.render(<TestButton />);
+}
+
+export function unmount(props) {
+  // 卸載組件並清理
+  root.unmount();
 }
