@@ -13,7 +13,6 @@ const TestButton = () => {
 
 export default TestButton;
 
-// 保存根節點以便後續卸載
 let root;
 
 export function bootstrap() {
@@ -21,12 +20,19 @@ export function bootstrap() {
 }
 
 export function mount(props) {
-  // 創建根節點並渲染
-  root = ReactDOM.createRoot(props.domElement);
-  root.render(<TestButton />);
+  const domElement = props.domElementGetter();
+  if (domElement) {
+    root = ReactDOM.createRoot(domElement);
+    root.render(<TestButton />);
+  } else {
+    console.error('Mount failed: domElement is not a valid DOM element.');
+  }
 }
 
 export function unmount(props) {
-  // 卸載組件並清理
-  root.unmount();
+  if (root) {
+    root.unmount();
+  } else {
+    console.error('Unmount failed: root is not defined.');
+  }
 }
