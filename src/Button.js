@@ -11,3 +11,15 @@ const TestButton = () => {
 };
 
 export default TestButton;
+
+export function mount(props) {
+  ReactDOM.render(<TestButton />, props.domElement);
+}
+
+export function unmount(props) {
+  ReactDOM.unmountComponentAtNode(props.domElement);
+}
+
+export function bootstrap() {
+  return Promise.resolve();
+}

@@ -6,7 +6,8 @@ module.exports = {
   output: {
     path: path.resolve('lib'),
     filename: 'Button.js',
-    libraryTarget: 'commonjs2',
+    libraryTarget: 'umd',
+    library: 'reactTestButton',
   },
   module: {
     rules: [
